@@ -14,4 +14,10 @@ export interface IAuthData {
     tgId: number
 }
 
+export interface ISession {
+    id: string;
+    userId: string;
+    tgId: number;
+}
+
 export interface IPatchData extends Omit<IAuthData, 'tgId'> {}

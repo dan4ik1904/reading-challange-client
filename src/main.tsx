@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client'
 import React from "react";
 import App from "./App.jsx";
 import "./index.css";
-import { Routes, Route, HashRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 
 createRoot(document.getElementById('root')!).render(

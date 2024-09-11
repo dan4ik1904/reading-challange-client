@@ -1,4 +1,5 @@
-import { IAuthData, IPatchData } from "../types/user.interface";
+import { IBook } from "../types/book.interface";
+import { IAuthData, IPatchData, ISession, IUser } from "../types/user.interface";
 import api from "./axios";
 
 
@@ -7,13 +8,13 @@ export const auth = async(userData: IAuthData) => {
     return res
 }
 
-export const authMe = async(tgId: number) => {
+export const authMe = async(tgId: number): Promise<IUser> => {
     const res = await api.get('/auth/me', {
         headers: {
             Authorization: tgId
         }
     })
-    return res
+    return res.data
 }
 
 export const patchMe = async(tgId: number, patchData: IPatchData) => {
@@ -25,20 +26,20 @@ export const patchMe = async(tgId: number, patchData: IPatchData) => {
     return res
 }
 
-export const getMyBooks = async(tgId: number) => {
+export const getMyBooks = async(tgId: number): Promise<IBook[]> => {
     const res = await api.get('/auth/mybooks', {
         headers: {
             Authorization: tgId
         }
     })
-    return res
+    return res.data
 }
 
-export const getSessions = async(tgId: number) => {
+export const getSessions = async(tgId: number): Promise<ISession[]> => {
     const res = await api.get('/auth/sessions', {
         headers: {
             Authorization: tgId
         }
     })
-    return res
+    return res.data
 }
