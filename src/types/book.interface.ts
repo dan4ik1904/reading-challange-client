@@ -7,3 +7,5 @@ export interface IBook {
     review: string;
     userId: string;
 }
+
+export interface ICreateBook extends Omit<IBook, 'id'> {}
