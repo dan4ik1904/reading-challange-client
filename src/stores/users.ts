@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { getAllUsers } from "../api/users"
+import { getAllUsers, getClassmatesUsers } from "../api/users"
 import { ISession, IUser } from "../types/user.interface"
 import { authMe, getMyBooks, getSessions } from "../api/auth"
 import { IBook } from "../types/book.interface"
@@ -13,6 +13,7 @@ class UserStore {
     error: unknown | null = null
     myBooks: IBook[] | Array<null> = []
     mySessions: ISession[] | Array<null> = []
+    classmates: IUser[] | Array<null> = []
 
     constructor() {
         makeAutoObservable(this)
@@ -46,7 +47,7 @@ class UserStore {
 
     }
 
-    async getMySesions(tgId: number) {
+    async fetchMySesions(tgId: number) {
         try {
             this.isLoading = true
             const sessions = await getSessions(tgId)
@@ -61,6 +62,15 @@ class UserStore {
             runInAction(() => {
                 this.isLoading = false
             })
+        }
+    }
+
+    async fetchClassmaets(tgId: number) {
+        try {
+            const classmates = await getClassmatesUsers(tgId) 
+            this.classmates = classmates
+        } catch (error) {
+            
         }
     }
 }

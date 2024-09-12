@@ -2,12 +2,12 @@ import { IBook, ICreateBook } from "../types/book.interface"
 import api from "./axios"
 
 
-export const getAllBooks = async(): Promise<IBook[]> | Promise<unknown> => {
+export const getAllBooks = async(): Promise<IBook[]>  => {
     try {
         const res = await api.get('/api/v1/books')
         return res.data
     } catch (error) {
-        return error
+        // return error
     }
 }
 
