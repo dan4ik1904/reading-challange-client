@@ -5,6 +5,7 @@
 .mobile__bottom {
     position: fixed;
     width: 100%;
+    height: 60px;
     bottom: 0;
     border-top: 2px solid black;
     background-color: #202020;
@@ -14,4 +15,8 @@
     display: flex;
     justify-content: space-between;
     padding: 7px;
+}
+
+.mobile__bottom .nav a img {
+    height: 50px;
 }

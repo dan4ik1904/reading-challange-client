@@ -10,7 +10,6 @@ function App() {
   const previousLocation = location.state?.previousLocation;
 
   return (
-    <div className="mobile">
       <Routes location={previousLocation || location}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -25,7 +24,6 @@ function App() {
           </Route> */}
         </Route>
       </Routes>
-    </div>
   );
 }
 

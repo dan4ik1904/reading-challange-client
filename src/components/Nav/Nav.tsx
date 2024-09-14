@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 function Nav() {
 
   return (
-    <div className="mobile__bottom container">
+    <div className="mobile__bottom">
       <div className="nav container">
           <Link to={'/'}>
               <img src={home} alt="" />
