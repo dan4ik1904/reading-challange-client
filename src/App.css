@@ -41,13 +41,12 @@
 }
 
 .mobile {
-  display: grid;
-  grid-template-rows: 40px 1fr;
-  height: 100%;
-
+  position: relative;
 }
 .mobile__content {
   height: 100%;
   padding: 20px;
-  word-wrap: break-word
+  word-wrap: break-word;
+  display: grid;
+  gap: 15px;
 }

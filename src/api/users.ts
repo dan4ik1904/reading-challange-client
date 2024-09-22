@@ -9,7 +9,7 @@ export const getAllUsers = async(): Promise<IUser[]> => {
 
 export const getTopUsers = async(): Promise<IUser[]> => {
     const res = await api.get('/users/top')
-    return res
+    return res.data
 }
 
 export const getClassmatesUsers = async(tgId: number): Promise<IUser[]> => {
@@ -18,5 +18,5 @@ export const getClassmatesUsers = async(tgId: number): Promise<IUser[]> => {
             Authorization: tgId
         }
     })
-    return res
+    return res.data
 }

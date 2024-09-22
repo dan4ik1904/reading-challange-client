@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { getAllUsers, getClassmatesUsers } from "../api/users"
-import { ISession, IUser } from "../types/user.interface"
-import { authMe, getMyBooks, getSessions } from "../api/auth"
+import { getAllUsers, getClassmatesUsers, getTopUsers } from "../api/users"
+import { IAuthData, ISession, IUser } from "../types/user.interface"
+import { auth, authMe, getSessions } from "../api/auth"
 import { IBook } from "../types/book.interface"
 
 
@@ -72,6 +72,28 @@ class UserStore {
         } catch (error) {
             
         }
+    }
+
+    async fetchTopUsers() {
+        try {
+            this.isLoading = true
+            const users = await getTopUsers()
+            this.users = users
+            runInAction(() => {
+                this.isLoading = false
+            })
+        } catch (error) {
+            this.error = error
+        }
+    }
+
+    async auth(data: IAuthData) {
+        this.isLoading = true
+        const res = await auth(data)
+        if(res.status === 200){
+            this.isLoading = false
+        }
+        return res
     }
 }
 

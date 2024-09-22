@@ -9,7 +9,7 @@ class BooksStore {
     myBooks: IBook[] | Array<null> = []
     isLoading = false
     error: unknown | null = null
-    books: IBook[] | Array<null> = []
+    books: IBook[] | Array<null> | undefined = []
 
     constructor() {
         makeAutoObservable(this)

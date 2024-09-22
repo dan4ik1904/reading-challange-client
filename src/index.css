@@ -13,6 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -23,6 +24,7 @@ a:hover {
 }
 
 body {
+  overflow-x: hidden;
   margin: 0;
   background-color: #242424;
   color: rgba(255, 255, 255, 0.87);

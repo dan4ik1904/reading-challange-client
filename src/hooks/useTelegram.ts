@@ -17,7 +17,7 @@ const useTelegram = (): any => {
     }
   }, []);
 
-  return tg;
+  return {tg, tgID: 2024448556};
 };
 
 
