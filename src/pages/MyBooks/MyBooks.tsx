@@ -5,16 +5,16 @@ import useAuth from "../../hooks/useAuth"
 import books from "../../stores/books"
 import useTelegram from "../../hooks/useTelegram"
 import Item from "../../components/Item/Item"
-import AddBook from "../../components/MyBooks/AddBook"
+import AddBook from "../../components/MyBooks/AddBookButton"
 
 
 const MyBooks = () => {
     const {isAuthenticated, loading} = useAuth()
-    const { tg } = useTelegram()
+    const { tgID } = useTelegram()
 
     useEffect(() => {
         try {
-            books.fetchMybooks(tg.initDataUnsafe.user.id)
+            books.fetchMybooks(tgID)
         } catch (error) {
             
         }

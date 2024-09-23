@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import useTelegram from './useTelegram';
 import api from '../api/axios';
+import { IUser } from '../types/user.interface';
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState({});
-    const { tg } = useTelegram();
+    const [data, setData] = useState<IUser | null>(null);
+    const { tgID } = useTelegram();
 
     useEffect(() => {
         const checkAuth = async () => {
             setLoading(true);
 
-            if (!tg || !tg.initDataUnsafe || !tg.initDataUnsafe.user || !tg.initDataUnsafe.user.id) {
+            if (!tgID) {
                 console.error('Telegram API не инициализирован или ID пользователя недоступен');
                 setLoading(false);
                 return;
@@ -21,14 +22,12 @@ const useAuth = () => {
             try {
                 const response = await api.get('/auth/me', {
                     headers: {
-                        Authorization: tg.initDataUnsafe.user.id
+                        Authorization: tgID
                     }
                 });
 
                 const dataRes = response.data;
                 setData(dataRes);
-                console.log(response);
-                console.log(tg);
 
                 if (response.status === 200) {
                     setIsAuthenticated(true);
@@ -44,7 +43,7 @@ const useAuth = () => {
         };
 
         checkAuth();
-    }, [tg]);
+    }, [tgID]);
 
     return { isAuthenticated, loading, data };
 };

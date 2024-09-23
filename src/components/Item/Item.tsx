@@ -1,34 +1,32 @@
-import { FC } from 'react'
-import './Item.css'
+import { FC } from 'react';
+import './Item.css';
 
 interface IProps {
-    h4: string,
-    h3: string,
-    books?: number|string
-    pagesCount: number|string
+    h4: string;
+    h3: string;
+    books?: number | string | undefined;
+    pagesCount: number | string;
 }
 
-
-const Item: FC<IProps> = (props: IProps) => {
+const Item: FC<IProps> = ({ h4, h3, books, pagesCount }) => {
     return (
         <div className="item">
             <div className="item__info__main">
-                <h3>{props.h3}</h3>
-                <h5>{props.h4}</h5>
+                <h3>{h3}</h3>
+                <h4>{h4}</h4>
             </div>
             <div className="item__info">
-                {props.books && (
-                    <span><span style={{
-                    color: '#646cff'
-                    }}>{props.books}</span> книг</span>
+                {books !== undefined && (
+                    <span>
+                        <span className="highlight">{books}</span> книг
+                    </span>
                 )}
-                
-                <span><span style={{
-                color: '#646cff'
-                }}>{props.pagesCount}</span> страниц</span>
+                <span>
+                    <span className="highlight">{pagesCount}</span> страниц
+                </span>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Item
+export default Item;

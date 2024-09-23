@@ -18,7 +18,7 @@ const Top: FC = observer(() => {
       <div className="users">
         {users.users.map((user) => (
           <>
-            <Item h3={user.fullName} h4={user.className} books={user.booksCount} pagesCount={user.booksCount}></Item>
+            <Item h3={user.fullName} h4={user.className} books={user.booksCount} pagesCount={user.pagesCount}></Item>
           </>
         ))
         }
