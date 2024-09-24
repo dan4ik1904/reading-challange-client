@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { IUser } from '../../types/user.interface'
 import './Me.css'
+import { MdDelete } from "react-icons/md";
 
 
 interface IProps {
@@ -8,8 +9,16 @@ interface IProps {
 }
 
 const MeInfo: FC<IProps> = ({me}: IProps) => {
+
+    // const deleteMe = () => {
+
+    // }
+
     return (
         <div className="me__item">
+            <div className="me__delete">
+                <MdDelete color='red' fontSize={'30px'}/>
+            </div>
             <div className="me__avatar__wrapper">
                 <div className="avatar">
                     <span>{me.fullName[0]}</span>

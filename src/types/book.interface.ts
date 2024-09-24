@@ -8,4 +8,10 @@ export interface IBook {
     userId: string;
 }
 
-export interface ICreateBook extends Omit<IBook, 'id'> {}
+export interface ICreateBook {
+    author: string;
+    name: string;
+    pageCount: number;
+    ratting: number;
+    review: string;
+}

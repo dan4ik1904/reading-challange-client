@@ -5,6 +5,7 @@
     display: grid;
     justify-content: center;
     gap: 20px;
+    position: relative;
 }
 
 .me__item .me__info {
@@ -27,4 +28,10 @@
     align-items: center;
     font-weight: 600;
     font-size: 70px;
+}
+
+.me__delete {
+    position: absolute;
+    top: 2%;
+    right: 2%;
 }

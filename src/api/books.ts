@@ -4,19 +4,23 @@ import api from "./axios"
 
 export const getAllBooks = async(): Promise<IBook[] | undefined>  => {
     try {
-        const res = await api.get('/api/v1/books')
+        const res = await api.get('/books')
         return res.data
     } catch (error) {
         // return error
     }
 }
 
-export const createBook = async(data: ICreateBook): Promise<IBook[] | unknown> => {
+export const createBook = async(data: ICreateBook, tgID: number)=> {
     try {
-        const res = await api.post('/api/v1/books', data)
-        return res.data
+        const res = await api.post('/books', data, {
+            headers: {
+                Authorization: tgID
+            }
+        })
+        return res
     } catch (error) {
-        return error
+        console.error(error)
     }
 }
 

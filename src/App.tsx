@@ -8,20 +8,20 @@ import Classmates from "./pages/Classmates/Classmates";
 import Me from "./pages/Me/Me";
 import Auth from "./pages/Auth/Auth";
 import AddBook from "./pages/AddBook/AddBook";
-import { useEffect } from "react";
-import useTelegram from "./hooks/useTelegram";
+// import { useEffect } from "react";
+// import useTelegram from "./hooks/useTelegram";
 
 
 function App() {
   const location = useLocation();
   const previousLocation = location.state?.previousLocation;
-  const { tg } = useTelegram()
+  // const { tg } = useTelegram()
 
-  useEffect(() => {
-    if(tg) {
-      tg.expand()
-    }
-  }, [tg])
+  // useEffect(() => {
+  //   if(tg) {
+  //     tg.expand()
+  //   }
+  // }, [tg])
 
   return (
       <Routes location={previousLocation || location}>

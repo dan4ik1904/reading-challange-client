@@ -95,6 +95,8 @@ class UserStore {
         }
         return res
     }
+
+    
 }
 
 export default new UserStore()

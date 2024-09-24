@@ -10,7 +10,7 @@ import Loading from "../../components/Loading/Loading";
 const Home: FC = observer(() => {
 
   const { isAuthenticated, loading, data } = useAuth()
-  const { tg } = useTelegram()
+  const { tg, tgID } = useTelegram()
 
   console.log(data)
   console.log(tg)
@@ -21,13 +21,13 @@ const Home: FC = observer(() => {
     <>
     { isAuthenticated ? (
         <>
-          {tg?.initDataUnsafe?.user?.id}
+          {tgID}
           <AuthorizatHome />
         </>
         
       ) : (
         <>
-          {tg?.initDataUnsafe?.user?.id}
+          {tgID}
           <NoAuthorizatHome />
         </>
         

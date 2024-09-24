@@ -1,0 +1,12 @@
+.home__item {
+    background-color: #1d1d1d;
+    border-radius: 11px;
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+}
+
+.home__item .info span {
+    font-weight: 600;
+    font-size: 25px;
+}

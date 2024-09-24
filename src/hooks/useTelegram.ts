@@ -17,7 +17,8 @@ const useTelegram = (): any => {
     }
   }, []);
 
-  return {tg, tgID: tg.initDataUnsafe.user.id};
+  return {tg, tgID: tg?.initDataUnsafe?.user?.id};
+  // tg?.initDataUnsafe?.user?.id
 };
 
 

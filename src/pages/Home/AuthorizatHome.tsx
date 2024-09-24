@@ -1,9 +1,12 @@
 import { FC } from "react"
+import InfoLitsey from "../../components/Home/InfoListsey"
 
 
 const AuthorizatHome: FC = () => {
     return (
-        <h1>Home auth</h1>
+        <>
+            <InfoLitsey />
+        </>
     )
 }
 
