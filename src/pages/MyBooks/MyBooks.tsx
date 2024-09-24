@@ -19,7 +19,7 @@ const MyBooks = () => {
             
         }
         
-    }, [])
+    }, [tgID])
 
     if(loading === true) return <Loading />
 
