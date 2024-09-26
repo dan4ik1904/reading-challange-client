@@ -10,3 +10,9 @@
     font-weight: 600;
     font-size: 25px;
 }
+
+.top__user {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}

@@ -1,10 +1,11 @@
+import { observer } from "mobx-react-lite"
 import NoAuth from "../../components/Auth/NoAuth"
 import Loading from "../../components/Loading/Loading"
 import MeInfo from "../../components/Me/MeInfo"
 import useAuth from "../../hooks/useAuth"
 
 
-const Me = () => {
+const Me = observer(() => {
 
     const {isAuthenticated, loading, data} = useAuth()
 
@@ -21,6 +22,6 @@ const Me = () => {
             
         </>
     )
-}
+})
 
 export default Me

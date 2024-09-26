@@ -4,10 +4,11 @@ import CustomSelectArray from '../../components/Select/SelectArray';
 import users from '../../stores/users';
 import useTelegram from '../../hooks/useTelegram';
 import { useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 // import useTelegram from '../../hooks/useTelegram';
 
 
-const Auth: React.FC = () => {
+const Auth: React.FC = observer(() => {
     const {tg} = useTelegram()
     const [username, setUsername] = useState<string>('');
     const [classname, setClassname] = useState<string>('');
@@ -191,6 +192,6 @@ const Auth: React.FC = () => {
             </div>
         </div>
     );
-};
+})
 
 export default Auth;

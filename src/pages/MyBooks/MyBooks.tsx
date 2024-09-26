@@ -6,9 +6,10 @@ import books from "../../stores/books"
 import useTelegram from "../../hooks/useTelegram"
 import Item from "../../components/Item/Item"
 import AddBook from "../../components/MyBooks/AddBookButton"
+import { observer } from "mobx-react-lite"
 
 
-const MyBooks = () => {
+const MyBooks = observer(() => {
     const {isAuthenticated, loading} = useAuth()
     const { tgID } = useTelegram()
 
@@ -41,6 +42,6 @@ const MyBooks = () => {
         </>
     );
 
-}
+})
 
 export default MyBooks
