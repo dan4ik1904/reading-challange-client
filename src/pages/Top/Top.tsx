@@ -3,7 +3,7 @@ import { FC, useEffect } from "react";
 import users from "../../stores/users";
 import './Top.css'
 import Loading from "../../components/Loading/Loading";
-import Item from "../../components/Item/Item";
+import UserTopCard from "../../components/Top/UserTopCard";
 
 
 const Top: FC = observer(() => {
@@ -18,7 +18,7 @@ const Top: FC = observer(() => {
       <div className="users">
         {users.users.map((user) => (
           <>
-            <Item h3={user.fullName} h4={user.className} books={user.booksCount} pagesCount={user.pagesCount}></Item>
+            <UserTopCard user={user} />
           </>
         ))
         }

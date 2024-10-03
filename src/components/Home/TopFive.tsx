@@ -1,56 +1,39 @@
 import { observer } from 'mobx-react-lite'
 import './Home.css'
-import { useEffect } from 'react'
-import users from '../../stores/users'
+import { FaBook } from "react-icons/fa6";
+import { BiSolidSpreadsheet } from "react-icons/bi";
+import { IUser } from '../../types/user.interface';
 
+interface IProps {
+    users: IUser[] | null[],
+    title: string
+}
 
-const TopFive = observer(() => {
+const TopFive = observer(({ users, title }: IProps) => {
 
-    const getPLace = (place: number) => {
-        if(place === 1) {
-            return (
-                <>1</>
-            )
-        }else if(place === 2) {
-            return (
-                <>2</>
-            )
-        }else if(place === 3) {
-            return (
-                <>3</>
-            )
-        }else if(place === 4) {
-            return (
-                <>4</>
-            )
-        }else if(place === 5) {
-            return (
-                <>5</>
-            )
-        }
-    }
-
-    useEffect(() => {
-        users.fetchTopUsers()
-    }, [])
     return (
     <div className="home__item">
+        <div className="title">
+            {title}
+        </div>
         <div className="top__users">
-            {users.users ? (
-                <>{users.users.slice(0, 5).map((user, key) => (
+            {users ? (
+                <>{users.slice(0, 5).map((user, key) => (
                     <div className="top__user">
                         <div className="place">
-                            {getPLace(key + 1)}
+                            {key+1}
                         </div>
                         <div className="name">
-                            <span>{user.fullName}</span>
+                            <span>{user?.fullName}</span>
                         </div>
-                        <div className="info">
+                        <div className="info__user">
                             <div className="books">
-                                <span>{user.booksCount}</span>
+                                <span>{user?.booksCount}</span>
+                                <FaBook fontSize={'20px'} />
                             </div>
                             <div className="pages">
-                                <span>{user.pagesCount}</span>
+                                <span style={{flexWrap: 'nowrap'}}>{user?.pagesCount}</span>
+                                <BiSolidSpreadsheet fontSize={'20px'} /> 
                             </div>
                         </div>
                     </div>

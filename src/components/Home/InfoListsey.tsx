@@ -17,7 +17,7 @@ const InfoLitsey: FC = () => {
             </div>
             <div className="info">
                 {books.books ? (
-                        <span>{books.books.length}/330</span>
+                        <span>{books.books.length}/500</span>
                     ): (
                         <span>loading...</span>
                 )}
