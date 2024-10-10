@@ -3,9 +3,10 @@ import InfoLitsey from "../../components/Home/InfoListsey"
 import TopFive from "../../components/Home/TopFive"
 import users from "../../stores/users"
 import useTelegram from "../../hooks/useTelegram"
+import { observer } from "mobx-react-lite"
 
 
-const AuthorizatHome: FC = () => {
+const AuthorizatHome: FC = observer(() => {
 
     const { tgID } = useTelegram()
 
@@ -32,6 +33,6 @@ const AuthorizatHome: FC = () => {
             )}
         </>
     )
-}
+})
 
 export default AuthorizatHome

@@ -49,5 +49,5 @@
   word-wrap: break-word;
   display: grid;
   gap: 15px;
-  margin-bottom: 50px;
+  margin: 50px 0;
 }

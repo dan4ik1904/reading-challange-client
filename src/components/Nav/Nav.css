@@ -22,3 +22,9 @@
 .mobile__bottom .nav a img {
     height: 40px;
 }
+
+.mobile__bottom .nav a:hover {
+    transition: 0.2s;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
+}

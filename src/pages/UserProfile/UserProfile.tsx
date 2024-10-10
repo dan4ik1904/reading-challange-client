@@ -8,7 +8,7 @@ import { useEffect } from "react"
 import users from "../../stores/users"
 
 
-const Me = observer(() => {
+const UserProfile = observer(() => {
 
     const {isAuthenticated, loading, data} = useAuth()
 
@@ -34,4 +34,4 @@ const Me = observer(() => {
     )
 })
 
-export default Me
+export default UserProfile
