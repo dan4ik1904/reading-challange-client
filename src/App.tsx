@@ -32,11 +32,9 @@ function App() {
           <Route path="top" element={<Top />} />
           <Route path="classmates" element={<Classmates />} />
           <Route path="me" element={<Me />} />
-          {/* <Route path="shop/*" element={<Shop />}>
-            <Route index element={<ProductItemsList />} />
-            <Route path=":category" element={<Category />} />
-            <Route path=":category/:itemId" element={<SingleItemPage />} />
-          </Route> */}
+          <Route path="users/" >
+            <Route path=":userId" element={<>User</>} />
+          </Route>
           <Route path="auth" element={<Auth />}/>
         </Route>
       </Routes>

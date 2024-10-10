@@ -2,7 +2,6 @@ import { FC, useEffect } from "react";
 import books from "../../stores/books";
 import './Home.css'
 
-
 const InfoLitsey: FC = () => {
 
     useEffect(() => {
@@ -12,8 +11,8 @@ const InfoLitsey: FC = () => {
 
     return (
         <div className="home__item">
-            <div className="litse__logo">
-
+            <div className="litsey__logo">
+                <img src="ec8b418d-d4dc-4264-8d29-a8f907ad4898.png"/>
             </div>
             <div className="info">
                 {books.books ? (

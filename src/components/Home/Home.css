@@ -13,6 +13,17 @@
     font-size: 25px;
 }
 
+.home__item .litsey__logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home__item .litsey__logo img {
+    width: 250px;
+    border-radius: 30%;
+}
+
 .top__user {
     display: flex;
     justify-content: space-between;

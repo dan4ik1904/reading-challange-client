@@ -96,6 +96,10 @@ class UserStore {
         return res
     }
 
+    // async fetchUser(id: string) {
+        
+    // }
+
     
 }
 

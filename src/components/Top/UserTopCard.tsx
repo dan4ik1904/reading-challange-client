@@ -1,14 +1,16 @@
 import { FC } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IUser } from "../../types/user.interface";
 import '../Item.css'
 import { MdMenuBook } from "react-icons/md";
 
 interface IProps {
-    user: IUser
+    user: IUser | null
 }
 
 const UserTopCard: FC<IProps> = ({user}) => {
+
+    if(!user) return <></>
 
     const navigate = useNavigate()
 

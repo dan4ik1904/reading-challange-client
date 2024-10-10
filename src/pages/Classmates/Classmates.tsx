@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite"
 import users from "../../stores/users"
 import Loading from "../../components/Loading/Loading"
+import UserTopCard from "../../components/Top/UserTopCard"
 
 
 const Classmates = observer(() => {
@@ -10,7 +11,11 @@ const Classmates = observer(() => {
     return (
         <>
             {users.classmates && (
-                <></>
+                <>
+                    {users.classmates.map(user => (
+                        <><UserTopCard user={user}/></>
+                    ))}
+                </>
             )}
         </>
     )
