@@ -7,6 +7,10 @@
     height: 100%;
 }
 
+.item:hover {
+    background-color: #161616;
+}
+
 .item .item__info {
     display: flex;
     flex-direction: column;

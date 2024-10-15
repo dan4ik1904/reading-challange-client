@@ -1,34 +1,29 @@
 import { observer } from "mobx-react-lite"
-import NoAuth from "../../components/Auth/NoAuth"
 import Loading from "../../components/Loading/Loading"
 import MeInfo from "../../components/Me/MeInfo"
-import useAuth from "../../hooks/useAuth"
 import { useEffect } from "react"
-// import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import users from "../../stores/users"
 
 
 const UserProfile = observer(() => {
 
-    const {isAuthenticated, loading, data} = useAuth()
+    // const {isAuthenticated, loading, data} = useAuth()
 
-    // const params = useParams()
-    // const userId = params.id
+    const params = useParams()
+    const userId = params.userId
 
     useEffect(() => {
-        users.fetchAllUsers()
-    })
+        if(userId) users.fetchUser(userId)
+        
+        
+    }, [])
 
-    if(loading === true) return <Loading />
-
-    if(isAuthenticated === false) return <NoAuth />
+    if(users.isLoading === true) return <Loading />
+    if(!users.oneUser) return <></>
     return (
         <>
-            {
-                data !== null &&  (
-                    <><MeInfo me={data}/></>
-                )
-            }
+            <MeInfo me={users.oneUser}/>
             
         </>
     )

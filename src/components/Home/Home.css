@@ -30,6 +30,13 @@
     gap: 15px;
 }
 
+.top__user:hover {
+    transition: 0.35s;
+    background-color: #161616;
+    padding: 7px;
+    border-radius: 5px;
+}
+
 .top__user .place {
     border: solid 2px white;
     padding: 5px;
@@ -48,7 +55,14 @@
 
 .home__item .info__user {
     font-weight: 500;
-    width: 30px;
+    width: 65px;
+}
+
+.home__item .info__user .books, .pages {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 .home__item .title {

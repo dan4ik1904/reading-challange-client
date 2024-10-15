@@ -24,11 +24,10 @@ export const createBook = async(data: ICreateBook, tgID: number)=> {
     }
 }
 
-export const getOneBook = async(id: string): Promise<IBook | unknown> => {
+export const getOneBook = async(id: string) => {
     try {
-        const res = await api.get(`/api/v1/books/${id}`)
+        const res = await api.get<IBook>(`/books/${id}`)
         return res.data
     } catch (error) {
-        return error
     }
 }

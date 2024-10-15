@@ -2,14 +2,18 @@ import { FC } from "react";
 import { IBook } from "../../types/book.interface";
 import '../Item.css'
 import { MdMenuBook } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
     book: IBook
 }
 
 const BookCard: FC<IProps> = ({book}) => {
+
+    const nav = useNavigate()
+
     return (
-        <div className="item">
+        <div className="item" onClick={() => nav(`/books/${book.id}`)}>
             <div className="item__info__main">
                 <h3>{book.name}</h3>
                 <h4>{book.author}</h4>

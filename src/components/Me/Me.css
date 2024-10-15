@@ -6,6 +6,7 @@
     justify-content: center;
     gap: 20px;
     position: relative;
+    height: 350px;
 }
 
 .me__item .me__info {

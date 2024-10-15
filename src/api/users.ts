@@ -20,3 +20,8 @@ export const getClassmatesUsers = async(tgId: number): Promise<IUser[]> => {
     })
     return res.data
 }
+
+export const getOneUser = async(id: string) => {
+    const res = await api.get<IUser>(`/users/${id}`)
+    return res
+}

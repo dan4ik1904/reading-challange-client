@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx"
 import { IBook, ICreateBook } from "../types/book.interface";
 import { getMyBooks } from "../api/auth";
-import { createBook, getAllBooks } from "../api/books";
+import { createBook, getAllBooks, getOneBook } from "../api/books";
 
 
 class BooksStore {
@@ -11,6 +11,7 @@ class BooksStore {
     isLoadingAddBook = false
     error: unknown | null = null
     books: IBook[] | Array<null> | undefined = []
+    book: IBook | null = null
 
     constructor() {
         makeAutoObservable(this)
@@ -50,6 +51,16 @@ class BooksStore {
             if(res?.status === 200) {
                 setLoading(false)
             }
+        } catch (error) {
+            
+        }
+    }
+
+    async fetchOneBook(id: string) {
+        try {
+            this.isLoading = true
+            const book = await getOneBook(id)
+            if(book) this.book = book
         } catch (error) {
             
         }

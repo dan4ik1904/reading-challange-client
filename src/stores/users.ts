@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { getAllUsers, getClassmatesUsers, getTopUsers } from "../api/users"
+import { getAllUsers, getClassmatesUsers, getOneUser, getTopUsers } from "../api/users"
 import { IAuthData, ISession, IUser } from "../types/user.interface"
 import { auth, authMe, getSessions } from "../api/auth"
 import { IBook } from "../types/book.interface"
@@ -8,6 +8,7 @@ import { IBook } from "../types/book.interface"
 class UserStore {
 
     users: IUser[] = []
+    oneUser: IUser | null = null
     me: IUser | null = null
     isLoading = false
     error: unknown | null = null
@@ -96,9 +97,18 @@ class UserStore {
         return res
     }
 
-    // async fetchUser(id: string) {
-        
-    // }
+    async fetchUser(id: string) {
+        this.isLoading = true
+        const res = await getOneUser(id)
+        if(res.status === 200) {
+            this.isLoading = false
+        }
+        runInAction(() => {
+            if(res.data) {
+                this.oneUser = res?.data 
+            }
+        })
+    }
 
     
 }
