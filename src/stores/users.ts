@@ -15,6 +15,7 @@ class UserStore {
     myBooks: IBook[] | Array<null> = []
     mySessions: ISession[] | Array<null> = []
     classmates: IUser[] | Array<null> = []
+    endFetch = false
 
     constructor() {
         makeAutoObservable(this)
@@ -75,18 +76,28 @@ class UserStore {
         }
     }
 
-    async fetchTopUsers() {
+    async fetchTopUsers(page: number, limit: number) {
         try {
-            this.isLoading = true
-            const users = await getTopUsers()
-            this.users = users
+            this.isLoading = true;
+            const newUsers = await getTopUsers(page, limit); // Получаем пользователей для текущей страницы
+            if(newUsers.length < 6) this.endFetch = true
             runInAction(() => {
-                this.isLoading = false
-            })
+                if(this.users.length === 0) {
+                    this.users = newUsers
+                } else {
+                    this.users = [...this.users, ...newUsers];
+                }
+                
+                this.isLoading = false;
+            });
         } catch (error) {
-            this.error = error
+            runInAction(() => {
+                this.error = error;
+                this.isLoading = false; // Обрабатываем ошибку и останавливаем загрузку
+            });
         }
     }
+    
 
     async auth(data: IAuthData) {
         this.isLoading = true

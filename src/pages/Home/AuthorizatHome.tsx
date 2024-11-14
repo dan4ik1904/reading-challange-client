@@ -12,7 +12,7 @@ const AuthorizatHome: FC = observer(() => {
 
     useEffect(() => {
         const fetch = async() => {
-            await users.fetchTopUsers()    
+            await users.fetchTopUsers(1, 5)    
             await users.fetchClassmaets(tgID)
         }
         fetch()

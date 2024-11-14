@@ -7,8 +7,10 @@ export const getAllUsers = async(): Promise<IUser[]> => {
     return res.data
 }
 
-export const getTopUsers = async(): Promise<IUser[]> => {
-    const res = await api.get('/users/top')
+export const getTopUsers = async(page: number, limit: number): Promise<IUser[]> => {
+    const res = await api.get('/users/top', {
+        params: { limit, page }
+    })
     return res.data
 }
 
