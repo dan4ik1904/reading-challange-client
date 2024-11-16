@@ -7,6 +7,7 @@ import useTelegram from "../../hooks/useTelegram"
 import AddBook from "../../components/Books/AddBookButton"
 import { observer } from "mobx-react-lite"
 import BookCard from "../../components/Books/BookCard"
+import './MeBooks.css'
 
 
 const MyBooks = observer(() => {
@@ -26,7 +27,7 @@ const MyBooks = observer(() => {
 
     if(isAuthenticated === false) return <NoAuth />
     return (
-        <>
+        <div className="items">
             <AddBook />
             {books.myBooks && (
                 books.myBooks.map((book) => (
@@ -37,7 +38,7 @@ const MyBooks = observer(() => {
                     )
                 ))
             )}
-        </>
+        </div>
     );
 
 })

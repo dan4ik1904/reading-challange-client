@@ -13,7 +13,7 @@ const BookCard: FC<IProps> = ({book}) => {
     const nav = useNavigate()
 
     return (
-        <div className="item" onClick={() => nav(`/books/${book.id}`)}>
+        <div className="item page-mybook__item book" onClick={() => nav(`/books/${book.id}`)}>
             <div className="item__info__main">
                 <h3>{book.name}</h3>
                 <h4>{book.author}</h4>

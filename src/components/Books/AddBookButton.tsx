@@ -10,7 +10,7 @@ const AddBook = () => {
     }
 
     return (
-        <div className="add-book" style={{
+        <div className="add-book page-mybook__item" style={{
             width: '100%',
             padding: '25px 0',
             backgroundColor: '#1d1d1d',
