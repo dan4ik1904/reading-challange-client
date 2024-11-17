@@ -6,9 +6,10 @@ import './Book.css'
 import { MdDelete } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import useTelegram from "../../hooks/useTelegram";
+import { observer } from "mobx-react-lite";
 
 
-const Book = () => {
+const Book = observer(() => {
 
     const [isActiveButtonDelete, setIsActiveButtonDelete] = useState(false)
 
@@ -62,6 +63,6 @@ const Book = () => {
         
         
     )
-}
+})
 
 export default Book

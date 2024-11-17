@@ -43,3 +43,16 @@ export const getSessions = async(tgId: number): Promise<ISession[]> => {
     })
     return res.data
 }
+
+export const logout = async(tgId: number) => {
+    try {
+        const res = await api.post('/auth/logout', NaN, {
+            headers: {
+                Authorization: tgId
+            }
+        })
+        return res.data
+    } catch (error) {
+        
+    }
+}

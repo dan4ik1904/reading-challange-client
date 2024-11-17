@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx"
 import { getAllUsers, getClassmatesUsers, getOneUser, getTopUsers } from "../api/users"
 import { IAuthData, ISession, IUser } from "../types/user.interface"
-import { auth, authMe, getSessions } from "../api/auth"
+import { auth, authMe, getSessions, logout } from "../api/auth"
 import { IBook } from "../types/book.interface"
 
 
@@ -105,7 +105,6 @@ class UserStore {
         if(res.status === 200){
             this.isLoading = false
         }
-        return res
     }
 
     async fetchUser(id: string) {
@@ -119,6 +118,12 @@ class UserStore {
                 this.oneUser = res?.data 
             }
         })
+    }
+
+    async authLogout(tgId: number) {
+        this.isLoading = true
+        await logout(tgId)
+        this.isLoading = false
     }
 
     

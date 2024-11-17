@@ -5,16 +5,17 @@ import users from '../../stores/users';
 import useTelegram from '../../hooks/useTelegram';
 import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import Loading from '../../components/Loading/Loading';
 // import useTelegram from '../../hooks/useTelegram';
 
 
 const Auth: React.FC = observer(() => {
-    const {tg} = useTelegram()
+    const {tgID} = useTelegram()
     const [username, setUsername] = useState<string>('');
     const [classname, setClassname] = useState<string>('');
     const [students, setStudents] = useState<Array<string>>([])
 
-    const navigate = useNavigate ()
+    const navigate = useNavigate()
 
     const classes = [
         { value: 1, label: '5А' },
@@ -153,18 +154,19 @@ const Auth: React.FC = observer(() => {
 
     const send = async() => {
         if(username && classname) {
-            const res = await users.auth({
+            users.auth({
                 fullName: username,
                 className: classname,
-                tgId: tg.initDataUnsafe.user.id
+                tgId: tgID
             })
-            if(res) {
+            .finally(() => {
                 navigate('/')
-            }
+            })
             
         }
     }
 
+    if(users.isLoading) return <Loading />
     return (
         <div className="container">
             <div className="row justify-content-center">

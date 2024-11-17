@@ -3,23 +3,33 @@ import { IUser } from '../../types/user.interface'
 import './Me.css'
 import useAuth from '../../hooks/useAuth'
 import { IoLogOut } from "react-icons/io5";
+import users from '../../stores/users';
+import useTelegram from '../../hooks/useTelegram';
+import { useNavigate } from 'react-router-dom';
 
 
 interface IProps {
-    me: IUser
+    me: IUser,
+    thisMe?: boolean
 }
 
-const MeInfo: FC<IProps> = ({me}: IProps) => {
+const MeInfo: FC<IProps> = ({me, thisMe}: IProps) => {
 
     const { data } = useAuth()
+    const { tgID } = useTelegram()
+
+    const nav = useNavigate()
 
     const logout = () => {
-
+        users.authLogout(tgID)
+        .finally(() => {
+            nav('/')
+        })
     }
 
     return (
         <div className="me__item">
-            {data && (
+            {thisMe && data && (
                 <div className="delete" style={{cursor: 'pointer'}}>
                     <IoLogOut fontSize={'30px'} color='red' onClick={() => logout()}/>
                 </div>

@@ -25,14 +25,14 @@ const Me = observer(() => {
         
     }, [])
 
-    if(loading === true) return <Loading />
+    if(loading === true || users.isLoading) return <Loading />
 
     if(isAuthenticated === false) return <NoAuth />
     return (
         <div className="items">
             {
                 data !== null &&  (
-                    <><MeInfo me={data}/></>
+                    <><MeInfo me={data} thisMe/></>
                 )
             }
             <TopFiveBook title="Топ 5 книг" books={books.myBooks} />
