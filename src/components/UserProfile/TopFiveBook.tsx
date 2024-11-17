@@ -22,7 +22,7 @@ const TopFiveBook = observer(({ books, title }: IProps) => {
         <div className="top__users">
             {books.length > 0 ? (
                 <>{books.slice(0, 5).map((book, key) => (
-                    <div className="top__user" onClick={() => nav(`/books/${book?.id}`)}>
+                    <div className="top__user" style={{cursor: 'pointer'}} onClick={() => nav(`/books/${book?.id}`)}>
                         <div className="place"> 
                             {key+1}
                         </div>

@@ -19,7 +19,7 @@ const UserTopCard: FC<IProps> = ({user}) => {
     }
 
     return (
-            <div className="item" onClick={link}>
+            <div className="item" style={{cursor: 'pointer'}} onClick={link}>
                 <div className="item__info__main">
                     <h3>{user.fullName}</h3>
                     <h4>{user.className}</h4>

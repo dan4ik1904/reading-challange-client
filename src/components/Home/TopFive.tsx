@@ -22,7 +22,7 @@ const TopFive = observer(({ users, title }: IProps) => {
         <div className="top__users">
             {users ? (
                 <>{users.slice(0, 5).map((user, key) => (
-                    <div className="top__user" onClick={() => nav(`/users/${user?.id}`)}>
+                    <div className="top__user" style={{cursor: 'pointer'}} onClick={() => nav(`/users/${user?.id}`)}>
                         <div className="place">
                             {key+1}
                         </div>

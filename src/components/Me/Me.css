@@ -36,3 +36,9 @@
     top: 2%;
     right: 2%;
 }
+
+.delete {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}

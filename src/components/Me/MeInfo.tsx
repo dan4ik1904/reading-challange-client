@@ -1,7 +1,8 @@
 import { FC } from 'react'
 import { IUser } from '../../types/user.interface'
 import './Me.css'
-// import { MdDelete } from "react-icons/md";
+import useAuth from '../../hooks/useAuth'
+import { IoLogOut } from "react-icons/io5";
 
 
 interface IProps {
@@ -10,9 +11,19 @@ interface IProps {
 
 const MeInfo: FC<IProps> = ({me}: IProps) => {
 
+    const { data } = useAuth()
+
+    const logout = () => {
+
+    }
 
     return (
         <div className="me__item">
+            {data && (
+                <div className="delete" style={{cursor: 'pointer'}}>
+                    <IoLogOut fontSize={'30px'} color='red' onClick={() => logout()}/>
+                </div>
+            )}
             <div className="me__avatar__wrapper">
                 <div className="avatar">
                     <span>{me.fullName[0]}</span>
