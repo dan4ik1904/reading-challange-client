@@ -18,7 +18,7 @@ const Home: FC = observer(() => {
   if(loading === true) return <Loading />
 
   return (
-    <>
+    <div className="home__items">
     { isAuthenticated ? (
         <>
           {tgID}
@@ -33,7 +33,7 @@ const Home: FC = observer(() => {
         
       )
     }
-    </>
+    </div>
    
   )
   

@@ -17,7 +17,7 @@ const Classmates = observer(() => {
     if(users.isLoading === true) return <Loading />
 
     return (
-        <>
+        <div className="items users">
             {users.classmates && (
                 <>
                     {users.classmates.map(user => (
@@ -25,7 +25,7 @@ const Classmates = observer(() => {
                     ))}
                 </>
             )}
-        </>
+        </div>
     )
 })
 

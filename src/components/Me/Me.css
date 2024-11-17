@@ -9,17 +9,17 @@
     height: 350px;
 }
 
-.me__item .me__info {
+.me__info {
     text-align: center;
 }
 
-.me__item .me__avatar__wrapper {
+.me__avatar__wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.me__item .me__avatar__wrapper .avatar {
+.me__avatar__wrapper .avatar {
     width: 150px;
     height: 150px;
     background: #0077fe;

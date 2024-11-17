@@ -29,7 +29,7 @@ const MyBooks = observer(() => {
     return (
         <div className="items">
             <AddBook />
-            {books.myBooks && (
+            {books.myBooks.length > 0 ? (
                 books.myBooks.map((book) => (
                     book && (
                         <BookCard
@@ -37,6 +37,8 @@ const MyBooks = observer(() => {
                         />
                     )
                 ))
+            ): (
+                <h2 style={{textAlign: 'center' }}>Здесь пока ничего нет :(</h2>
             )}
         </div>
     );

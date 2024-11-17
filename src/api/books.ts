@@ -31,3 +31,25 @@ export const getOneBook = async(id: string) => {
     } catch (error) {
     }
 }
+
+export const getBooksUser = async(id: string) => {
+    try {
+        const res = await api.get(`/books/top/${id}`)
+        return res.data
+    } catch (error) {
+        
+    }
+}
+
+export const deleteBook = async(id: string, tgID: number) => {
+    try {
+        const res = await api.delete(`/books/${id}`, {
+            headers: {
+                Authorization: tgID
+            }
+        })
+        return res
+    } catch (error) {
+        
+    }
+}

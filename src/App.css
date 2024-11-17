@@ -49,6 +49,5 @@
   word-wrap: break-word;
   display: grid;
   gap: 15px;
-  margin: 50px 0;
   min-height: 100vh;
 }

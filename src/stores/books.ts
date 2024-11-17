@@ -1,7 +1,8 @@
 import { makeAutoObservable, runInAction } from "mobx"
 import { IBook, ICreateBook } from "../types/book.interface";
 import { getMyBooks } from "../api/auth";
-import { createBook, getAllBooks, getOneBook } from "../api/books";
+import { createBook, deleteBook, getAllBooks, getBooksUser, getOneBook } from "../api/books";
+import { PiTreasureChest } from "react-icons/pi";
 
 
 class BooksStore {
@@ -12,6 +13,7 @@ class BooksStore {
     error: unknown | null = null
     books: IBook[] | Array<null> | undefined = []
     book: IBook | null = null
+    userBooks: IBook[] | null[] = []
 
     constructor() {
         makeAutoObservable(this)
@@ -61,6 +63,28 @@ class BooksStore {
             this.isLoading = true
             const book = await getOneBook(id)
             if(book) this.book = book
+            this.isLoading = false
+        } catch (error) {
+            
+        }
+    }
+
+    async fetchBooksUser(id: string) {
+        try {
+            this.isLoading = true
+            const books = await getBooksUser(id)
+            if(books) this.userBooks = books
+            this.isLoading = false
+        } catch (error) {
+            
+        }
+    }
+
+    async deleteBook(id: string, tgID: number) {
+        try {
+            this.isLoading = true
+            await deleteBook(id, tgID)
+            this.isLoading = false
         } catch (error) {
             
         }

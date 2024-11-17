@@ -17,7 +17,8 @@ const AddBook = () => {
             borderRadius: '9px',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            height: '130px'
         }}>
             <button onClick={() => click()} style={{backgroundColor: '#646cff', color: 'white'}}><FaPlus color={'white'} /> Добавить книгу</button>
         </div>

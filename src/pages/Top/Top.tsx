@@ -36,7 +36,7 @@ const Top: FC = observer(() => {
   
   return (
     <main>
-      <div className="users">
+      <div className="users items">
         {users.users.map((user) => (
           <UserTopCard key={user.id} user={user} />
         ))}
