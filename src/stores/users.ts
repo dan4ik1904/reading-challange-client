@@ -72,7 +72,9 @@ class UserStore {
     async fetchClassmaets(tgId: number) {
         try {
             const classmates = await getClassmatesUsers(tgId) 
-            this.classmates = classmates
+            runInAction(() => {
+                this.classmates = classmates
+            })
         } catch (error) {
             
         }
@@ -147,7 +149,11 @@ class UserStore {
     async authLogout(tgId: number) {
         this.isLoading = true
         await logout(tgId)
-        this.isLoading = false
+        runInAction(() => {
+            this.isLoading = false
+            this.isAvtiveLogoutButton = false
+        })
+        
     }
 
     

@@ -23,10 +23,13 @@ const Me = observer(() => {
         Promise.all([
             books.fetchMybooks(tgID),
             users.fetchTopFiveUsers(),
-            users.fetchClassmaets(tgID)
         ])
         
     }, [])
+
+    useEffect(() => {
+        if(tgID) users.fetchClassmaets(tgID)
+    }, [tgID])
 
     const logout = () => {
         users.authLogout(tgID)
@@ -51,7 +54,7 @@ const Me = observer(() => {
                     {data !== null && <MeInfo me={data} thisMe />}
                     <TopFiveBook title="Топ 5 книг" books={books.myBooks} />
                     {data && <TopFiveUser title="В топ 5 лицея" users={users.topFiveUsers} user={data} />}
-                    {users && users.classmates && users.classmates.length > 0 && data && (
+                    {users.classmates.length > 0 && data && (
                         <TopFiveUser title="В топ 5 одноклассников" users={users.classmates} user={data} />
                     )}
                 </>

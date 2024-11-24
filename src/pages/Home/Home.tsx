@@ -16,10 +16,14 @@ const Home: FC = observer(() => {
   useEffect(() => {
       const fetch = async() => {
           await users.fetchTopFiveUsers() 
-          await users.fetchClassmaets(tgID)
       }
       fetch()
   }, [])
+
+  useEffect(() => {
+    if(tgID) users.fetchClassmaets(tgID)
+  }, [tgID])
+
   if(users.isLoading) return <Loading />
   return (
       <div className="home__items">

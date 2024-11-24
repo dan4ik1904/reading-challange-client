@@ -11,15 +11,15 @@ import useAuth from "../../hooks/useAuth"
 const Classmates = observer(() => {
 
     const { tgID } = useTelegram()
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated, loading } = useAuth()
 
     useEffect(() => {
-        users.fetchClassmaets(tgID)
-    }, [])
+        if(tgID) users.fetchClassmaets(tgID)
+    }, [tgID])
 
     if(users.isLoading === true) return <Loading />
 
-    if(isAuthenticated === false) return <NoAuth />
+    if(isAuthenticated === false && loading === false) return <NoAuth />
     return (
         <div className="items users">
             {users.classmates && (
