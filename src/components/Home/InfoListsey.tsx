@@ -1,8 +1,10 @@
 import { FC, useEffect } from "react";
 import books from "../../stores/books";
 import './Home.css'
+import { FaBook } from "react-icons/fa6";
+import { observer } from "mobx-react-lite";
 
-const InfoLitsey: FC = () => {
+const InfoLitsey: FC = observer(() => {
 
     useEffect(() => {
         books.fetchAllBooks()
@@ -16,13 +18,13 @@ const InfoLitsey: FC = () => {
             </div>
             <div className="info">
                 {books.books ? (
-                        <span>{books.books.length}/500</span>
+                        <span>{books.books.length}/500<FaBook color='white' fontSize={'26px'} /></span>
                     ): (
                         <span>loading...</span>
                 )}
             </div>
         </div>
     )
-}
+})
 
 export default InfoLitsey

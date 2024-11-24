@@ -4,6 +4,7 @@ import { FaBook } from "react-icons/fa6";
 import { BiSolidSpreadsheet } from "react-icons/bi";
 import { IUser } from '../../types/user.interface';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 interface IProps {
     users: IUser[] | null[],
@@ -14,6 +15,8 @@ const TopFive = observer(({ users, title }: IProps) => {
 
     const nav = useNavigate()
 
+    const { data } = useAuth()
+
     return (
     <div className="home__item">
         <div className="title">
@@ -22,7 +25,7 @@ const TopFive = observer(({ users, title }: IProps) => {
         <div className="top__users">
             {users ? (
                 <>{users.slice(0, 5).map((user, key) => (
-                    <div className="top__user" style={{cursor: 'pointer'}} onClick={() => nav(`/users/${user?.id}`)}>
+                    <div className={user?.id == data?.id ? "top__user me" : 'top__user'} style={{cursor: 'pointer'}} onClick={() => nav(`/users/${user?.id}`)}>
                         <div className="place">
                             {key+1}
                         </div>

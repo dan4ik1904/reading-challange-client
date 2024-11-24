@@ -16,7 +16,7 @@ const BookCard: FC<IProps> = ({book}) => {
         <div style={{cursor: 'pointer'}} className="item page-mybook__item book" onClick={() => nav(`/books/${book.id}`)}>
             <div className="item__info__main">
                 <h3>{book.name}</h3>
-                <h4>{book.author}</h4>
+                <span>{book.author}</span>
             </div>
             <div className="item__info">
                 <span>

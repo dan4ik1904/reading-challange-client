@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import useTelegram from "../../hooks/useTelegram";
 import { observer } from "mobx-react-lite";
+import useAuth from "../../hooks/useAuth";
 
 
 const Book = observer(() => {
@@ -15,6 +16,8 @@ const Book = observer(() => {
 
     const params = useParams()
     const id = params.id
+
+    const { data } = useAuth()
 
     const { tgID } = useTelegram()
 
@@ -34,9 +37,12 @@ const Book = observer(() => {
             {isActiveButtonDelete === false ? (
                 <>
                     <div className="info__book">
-                        <div className="delete">
-                            <MdDelete fontSize={'25px'} color={'red'} onClick={() =>  setIsActiveButtonDelete(true)} />
-                        </div>
+                        {books.book?.userId == data?.id && (
+                            <div className="delete">
+                                <MdDelete fontSize={'25px'} color={'red'} onClick={() =>  setIsActiveButtonDelete(true)} />
+                            </div>
+                        )}
+                        
                         <div className="title">
                             <h2>{books.book?.name}</h2>
                             <h5>{books.book?.author}</h5>

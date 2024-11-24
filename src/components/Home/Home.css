@@ -8,11 +8,16 @@
     gap: 15px;
 }
 
+.top__user.me {
+    background-color: #181818;
+    border-radius: 7px;
+}
+
 .home__items {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 50px;
+    margin: 50px 0;
 }
 
 

@@ -4,6 +4,8 @@ import books from "../../stores/books";
 import useTelegram from "../../hooks/useTelegram";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import NoAuth from "../../components/Auth/NoAuth";
+import useAuth from "../../hooks/useAuth";
 
 
 
@@ -17,6 +19,8 @@ const AddBook = () => {
     const [loading, setLoading] = useState(false)
 
     const { tgID } = useTelegram()
+    const { isAuthenticated } = useAuth()
+
     const navigate = useNavigate()
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -41,6 +45,7 @@ const AddBook = () => {
 
     if(loading === true) return <Loading />
 
+    if(isAuthenticated === false) return <NoAuth />
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -89,12 +94,13 @@ const AddBook = () => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label" style={{ color: '#888' }}>Ревью</label>
-                                <input
+                                <textarea
                                     onChange={e => setReview(e.target.value)}
-                                    type="text"
                                     className="form-control"
                                     id="password"
                                     required
+                                    rows={3}
+                                    style={{resize: 'none'}}
                                 />
                             </div>
                             <button onClick={() => send()} type="submit" className="btn btn-primary w-100" style={{ backgroundColor: '#646cff', border: 'none', marginTop: '10px' }}>

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import './Loading.css'
 
-const Loading = () => {
+const Loading: FC<{isSmall?: boolean}> = ({ isSmall }) => {
   const [dots, setDots] = useState(1);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const Loading = () => {
   }, []);
 
   return (
-    <div className="loading">
+    <div className={isSmall ? "small loading" : 'loading'}>
       <div className="dots">
         {Array.from({ length: dots }).map((_, i) => (
           <div key={i} className="dot"></div>

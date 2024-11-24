@@ -16,6 +16,8 @@ class UserStore {
     mySessions: ISession[] | Array<null> = []
     classmates: IUser[] | Array<null> = []
     endFetch = false
+    topFiveUsers: IUser[] = []
+    isAvtiveLogoutButton: boolean = false
 
     constructor() {
         makeAutoObservable(this)
@@ -86,6 +88,28 @@ class UserStore {
                     this.users = newUsers
                 } else {
                     this.users = [...this.users, ...newUsers];
+                }
+                
+                this.isLoading = false;
+            });
+        } catch (error) {
+            runInAction(() => {
+                this.error = error;
+                this.isLoading = false; // Обрабатываем ошибку и останавливаем загрузку
+            });
+        }
+    }
+
+    async fetchTopFiveUsers() {
+        try {
+            this.isLoading = true;
+            const newUsers = await getTopUsers(1, 5); // Получаем пользователей для текущей страницы
+            if(newUsers.length < 6) this.endFetch = true
+            runInAction(() => {
+                if(this.topFiveUsers.length === 0) {
+                    this.topFiveUsers = newUsers
+                } else {
+                    this.topFiveUsers = [...this.topFiveUsers, ...newUsers];
                 }
                 
                 this.isLoading = false;

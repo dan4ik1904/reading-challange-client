@@ -1,43 +1,41 @@
 import { observer } from "mobx-react-lite";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
-import NoAuthorizatHome from "./NoAuthorizatHome";
-import AuthorizatHome from "./AuthorizatHome";
 import useTelegram from "../../hooks/useTelegram";
 import Loading from "../../components/Loading/Loading";
+import users from "../../stores/users";
+import InfoLitsey from "../../components/Home/InfoListsey";
+import TopFive from "../../components/Home/TopFive";
 
 
 const Home: FC = observer(() => {
 
-  const { isAuthenticated, loading, data } = useAuth()
-  const { tg, tgID } = useTelegram()
+  const { tgID } = useTelegram()
+  const { isAuthenticated } = useAuth()
 
-  console.log(data)
-  console.log(tg)
-
-  if(loading === true) return <Loading />
-
+  useEffect(() => {
+      const fetch = async() => {
+          await users.fetchTopFiveUsers() 
+          await users.fetchClassmaets(tgID)
+      }
+      fetch()
+  }, [])
+  if(users.isLoading) return <Loading />
   return (
-    <div className="home__items">
-    { isAuthenticated ? (
-        <>
-          {tgID}
-          <AuthorizatHome />
-        </>
-        
-      ) : (
-        <>
-          {tgID}
-          <NoAuthorizatHome />
-        </>
-        
-      )
-    }
-    </div>
-   
+      <div className="home__items">
+          <InfoLitsey />
+          {users.users && (
+              <TopFive title="Топ лицея" users={users.topFiveUsers}/>    
+          )
+         }
+          {users.classmates && isAuthenticated ? (
+              <TopFive title={"Топ класса"} users={users.classmates}/>    
+          ) : (
+              <></>
+          )}
+      </div>
   )
-  
-  
 })
 
 export default Home;
+

@@ -2,7 +2,6 @@ import { makeAutoObservable, runInAction } from "mobx"
 import { IBook, ICreateBook } from "../types/book.interface";
 import { getMyBooks } from "../api/auth";
 import { createBook, deleteBook, getAllBooks, getBooksUser, getOneBook } from "../api/books";
-import { PiTreasureChest } from "react-icons/pi";
 
 
 class BooksStore {

@@ -21,7 +21,7 @@ const UserProfile = observer(() => {
             Promise.all([
             users.fetchUser(userId),
             books.fetchBooksUser(userId),
-            users.fetchTopUsers(1, 5)
+            users.fetchTopFiveUsers()
             ])
         }
         
@@ -34,7 +34,7 @@ const UserProfile = observer(() => {
         <div className="items">
             <MeInfo me={users.oneUser}/>
             <TopFiveBook title="Топ 5 книг" books={books.userBooks} />
-            <TopFiveUser title="В топ 5 лицея" user={users.oneUser} users={users.users} />
+            <TopFiveUser title="В топ 5 лицея" user={users.oneUser} users={users.topFiveUsers} />
         </div>
     )
 })
