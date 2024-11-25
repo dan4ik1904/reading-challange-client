@@ -9,9 +9,10 @@ interface CustomSelectProps {
     options: Option[];
     onChange: (value: number, label: string) => void;
     placeholder?: string;
+    onClick?: () => void
 }
 
-const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placeholder }) => {
+const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placeholder, onClick }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedValue, setSelectedValue] = useState<string>('');
 
@@ -22,7 +23,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placehol
     };
 
     return (
-        <div className="custom-select form-control" style={{ position: 'relative', width: '100%' }}>
+        <div onClick={onClick} className="custom-select form-control" style={{ position: 'relative', width: '100%' }}>
             <div 
                 className="selected-option" 
                 onClick={() => setIsOpen(!isOpen)} 

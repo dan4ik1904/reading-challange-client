@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 
 interface CustomSelectProps {
     options: string[];
     onChange: (label: string) => void;
     placeholder?: string;
+    setIsOpen: Dispatch<SetStateAction<boolean>>
+    isOpen: boolean;
 }
 
-const CustomSelectArray: React.FC<CustomSelectProps> = ({ options, onChange, placeholder }) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+const CustomSelectArray: React.FC<CustomSelectProps> = ({ options, onChange, placeholder, isOpen, setIsOpen }) => {
     const [selectedValue, setSelectedValue] = useState<string>('');
 
     const handleOptionClick = (label: string) => {
@@ -21,7 +22,7 @@ const CustomSelectArray: React.FC<CustomSelectProps> = ({ options, onChange, pla
         <div className="custom-select form-control" style={{ position: 'relative', width: '100%' }}>
             <div 
                 className="selected-option" 
-                onClick={() => setIsOpen(!isOpen)} 
+                onClick={() => {setIsOpen(true)}} 
                 style={{
                     padding: '2px',
                     borderRadius: '0',

@@ -44,7 +44,6 @@
 .top__user {
     display: flex;
     align-items: center;
-    padding: 10px;
     background-color: #1d1d1d;
     border-radius: 7px;
     transition: background-color 0.3s;
@@ -93,7 +92,7 @@
 .top__users {
     display: flex; /* Use flex for the top users container */
     flex-direction: column; /* Stack top users vertically */
-    gap: 5px;
+    gap: 15px;
     width: 100%; /* Ensure top__users takes full width of parent */
 }
 

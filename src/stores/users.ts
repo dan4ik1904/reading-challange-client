@@ -18,6 +18,7 @@ class UserStore {
     endFetch = false
     topFiveUsers: IUser[] = []
     isAvtiveLogoutButton: boolean = false
+    stopFetchTopUser: boolean = false
 
     constructor() {
         makeAutoObservable(this)
@@ -82,8 +83,10 @@ class UserStore {
 
     async fetchTopUsers(page: number, limit: number) {
         try {
+            if(this.stopFetchTopUser === true) return
             this.isLoading = true;
             const newUsers = await getTopUsers(page, limit); // Получаем пользователей для текущей страницы
+            if(newUsers.length === 0) this.stopFetchTopUser = true
             if(newUsers.length < 6) this.endFetch = true
             runInAction(() => {
                 if(this.users.length === 0) {

@@ -17,9 +17,10 @@ const AddBook = () => {
     const [review, setReview] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [isOpenRatting, setIsOpenRatting] = useState(false)
 
     const { tgID } = useTelegram()
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated, loading: loadingAuth } = useAuth()
 
     const navigate = useNavigate()
 
@@ -45,12 +46,12 @@ const AddBook = () => {
 
     if(loading === true) return <Loading />
 
-    if(isAuthenticated === false) return <NoAuth />
+    if(isAuthenticated === false && loadingAuth === false) return <NoAuth />
     return (
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-6">
-                    <div className="card" style={{ backgroundColor: '#1d1d1d', borderRadius: '10px', padding: '2em', marginTop: '5em' }}>
+                    <div className="card" style={{ backgroundColor: '#1d1d1d', borderRadius: '10px', padding: '2em', marginTop: '50px' }}>
                         <h2 className="text-center" style={{ color: '#fff' }}>Добавление книги</h2>
                         {error && (
                             <p style={{
@@ -90,7 +91,7 @@ const AddBook = () => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="username" className="form-label" style={{ color: '#888' }}>Рейтинг</label>
-                                <CustomSelectArray options={['1', '2', '3', '4', '5']} onChange={value => setRatting(Number(value))} placeholder='Рейтинг'/>
+                                <CustomSelectArray isOpen={isOpenRatting} setIsOpen={setIsOpenRatting}  options={['1', '2', '3', '4', '5']} onChange={value => setRatting(Number(value))} placeholder='Рейтинг'/>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label" style={{ color: '#888' }}>Ревью</label>
