@@ -28,7 +28,7 @@ const TopFiveUser = observer(({ users, title, user }: IProps) => {
             <div className="title">{title}</div>
             <div className="top__users">
                 {topUsers.map((userEl, index) => (
-                    <div key={userEl?.id || index} style={{cursor: 'pointer'}} className={`top__user ${userEl?.id === user.id ? 'me' : ''}`} onClick={() => nav(`/users/${userEl?.id}`)}>
+                    <div key={userEl?.id || index} style={{cursor: 'pointer'}} className={`top__user ${userEl?.id === user.id ? 'me' : ''}`} onClick={() => {userEl?.id ? nav(`/users/${userEl.id}`) : nav('/')}}>
                         <div className="place">
                            {userEl?.id === user.id && !userInTop ? '...' : index + 1} {/* Conditionally render place */}
                         </div>

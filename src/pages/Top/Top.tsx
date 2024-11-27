@@ -12,45 +12,50 @@ const Top: FC = observer(() => {
   const [hasMore, setHasMore] = useState(true); // Track if there are more pages to load
 
   useEffect(() => {
+    users.resetTopUsers(); // Сбросим список пользователей при переходе на страницу
+    setPage(1); // Сбросим страницу на первую
+  }, []);
+
+  useEffect(() => {
     const fetchUsers = async () => {
-      if (!hasMore) return; // Don't fetch if no more data
+      if (!hasMore || users.isLoading) return; // Don't fetch if no more data or if already loading
       setIsLoadingMore(true);
       try {
         await users.fetchTopUsers(page, itemsPerPage);
+        if (users.topUsers.length < page * itemsPerPage) {
+          setHasMore(false); // Если количество пользователей меньше, чем ожидается, значит больше нет данных
+        }
       } catch (error) {
         console.error("Error fetching users:", error);
-        setHasMore(false); // Stop fetching on error
+        setHasMore(false); // Останавливаем загрузку при ошибке
       } finally {
         setIsLoadingMore(false);
       }
     };
 
-    if (!users.isLoading && !isLoadingMore && hasMore) {
-      fetchUsers();
-    }
-  }, [page, hasMore]);
-
+    fetchUsers();
+  }, [page]);
 
   const handleScroll = () => {
     const { innerHeight, scrollY } = window;
     const { offsetHeight } = document.documentElement;
 
-    if (innerHeight + scrollY + 100 >= offsetHeight && !users.isLoading && !isLoadingMore && hasMore) {
-      setPage(page + 1);
+    if (innerHeight + scrollY + 100 >= offsetHeight && !isLoadingMore && hasMore) {
+      setPage((prevPage) => prevPage + 1); // Используем функцию обновления состояния
     }
   };
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]); //Added handleScroll to dependencies
+  }, [handleScroll]);
 
   if (users.isLoading && page === 1) return <Loading />;
 
   return (
     <main>
       <div className="users items">
-        {users.users.map((user) => (
+        {users.topUsers.map((user) => (
           <UserTopCard key={user.id} user={user} />
         ))}
       </div>

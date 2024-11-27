@@ -19,6 +19,7 @@ class UserStore {
     topFiveUsers: IUser[] = []
     isAvtiveLogoutButton: boolean = false
     stopFetchTopUser: boolean = false
+    topUsers: IUser[] = []
 
     constructor() {
         makeAutoObservable(this)
@@ -89,10 +90,10 @@ class UserStore {
             if(newUsers.length === 0) this.stopFetchTopUser = true
             if(newUsers.length < 6) this.endFetch = true
             runInAction(() => {
-                if(this.users.length === 0) {
-                    this.users = newUsers
+                if(this.topUsers.length === 0) {
+                    this.topUsers = newUsers
                 } else {
-                    this.users = [...this.users, ...newUsers];
+                    this.topUsers = [...this.topUsers, ...newUsers];
                 }
                 
                 this.isLoading = false;
@@ -125,6 +126,10 @@ class UserStore {
                 this.isLoading = false; // Обрабатываем ошибку и останавливаем загрузку
             });
         }
+    }
+
+    async resetTopUsers() {
+        this.topUsers = []
     }
     
 
