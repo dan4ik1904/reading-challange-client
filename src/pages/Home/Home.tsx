@@ -14,8 +14,11 @@ const Home: FC = observer(() => {
   const { isAuthenticated } = useAuth()
 
   useEffect(() => {
-      const fetch = async() => {
-          await users.fetchTopFiveUsers() 
+      const fetch = () => {
+        users.resetTopFiveUsers()
+        .then(() => {
+           users.fetchTopFiveUsers()  
+        }) 
       }
       fetch()
   }, [])

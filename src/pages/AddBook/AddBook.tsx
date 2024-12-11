@@ -80,7 +80,7 @@ const AddBook = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="email" className="form-label" style={{ color: '#888' }}>Каличество страниц</label>
+                                <label htmlFor="email" className="form-label" style={{ color: '#888' }}>Количество страниц</label>
                                 <input
                                     onChange={e => setCountPage(Number(e.target.value))}
                                     type="text"

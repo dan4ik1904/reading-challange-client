@@ -10,6 +10,7 @@ import Auth from "./pages/Auth/Auth";
 import AddBook from "./pages/AddBook/AddBook";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Book from "./pages/Book/Book";
+import UserBooks from "./pages/UserBooks/UserBooks";
 // import { useEffect } from "react";
 // import useTelegram from "./hooks/useTelegram";
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="me" element={<Me />} />
           <Route path="users/" >
             <Route path=":userId" element={<UserProfile />} />
+            <Route path=":userId/books" element={<UserBooks />} />
           </Route>
           <Route path="books/" >
             <Route path=":id" element={<Book />} />

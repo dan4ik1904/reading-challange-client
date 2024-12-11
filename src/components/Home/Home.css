@@ -6,6 +6,7 @@
     justify-content: center;
     text-align: center;
     gap: 15px;
+    position: relative;
 }
 
 .top__user.me {
@@ -24,6 +25,13 @@
 .home__item .info span {
     font-weight: 600;
     font-size: 25px;
+}
+
+.home__item .all {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: #646cff;
 }
 
 .home__item .litsey__logo {

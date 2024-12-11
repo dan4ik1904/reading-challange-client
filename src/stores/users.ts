@@ -128,6 +128,10 @@ class UserStore {
         }
     }
 
+    async resetTopFiveUsers() {
+        this.topFiveUsers = []
+    }
+
     async resetTopUsers() {
         this.topUsers = []
     }

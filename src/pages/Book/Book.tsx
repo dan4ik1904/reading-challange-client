@@ -37,7 +37,7 @@ const Book = observer(() => {
             {isActiveButtonDelete === false ? (
                 <>
                     <div className="info__book">
-                        {books.book?.userId == data?.id && (
+                        {books.book?.userId == data?.id && books.isLoading === false && (
                             <div className="delete">
                                 <MdDelete fontSize={'25px'} color={'red'} onClick={() =>  setIsActiveButtonDelete(true)} />
                             </div>

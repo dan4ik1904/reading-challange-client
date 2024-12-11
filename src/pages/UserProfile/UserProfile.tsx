@@ -17,15 +17,20 @@ const UserProfile = observer(() => {
     const userId = params.userId
 
     useEffect(() => {
-        if(userId) {
-            Promise.all([
-            users.fetchUser(userId),
-            books.fetchBooksUser(userId),
-            users.fetchTopFiveUsers()
-            ])
+        const fetch = () => {
+            users.resetTopFiveUsers()
+            .then(() => {
+                if(userId) {
+                    Promise.all([
+                    users.fetchUser(userId),
+                    books.fetchBooksUser(userId),
+                    users.fetchTopFiveUsers()
+                ]) 
+            }
+            }) 
+            
         }
-        
-        
+        fetch()
     }, [])
 
     if(users.isLoading === true) return <Loading />
@@ -33,7 +38,7 @@ const UserProfile = observer(() => {
     return (
         <div className="items">
             <MeInfo me={users.oneUser}/>
-            <TopFiveBook title="Топ 5 книг" books={books.userBooks} />
+            {users.oneUser && <TopFiveBook currentUser={users.oneUser} title="Топ 5 книг" books={books.userBooks} />}
             <TopFiveUser title="В топ 5 лицея" user={users.oneUser} users={users.topFiveUsers} />
         </div>
     )

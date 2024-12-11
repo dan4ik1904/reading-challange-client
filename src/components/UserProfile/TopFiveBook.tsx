@@ -1,21 +1,28 @@
 import { observer } from 'mobx-react-lite'
 import { FaBook } from "react-icons/fa6";
 import { IBook } from '../../types/book.interface';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
+import { IUser } from '../../types/user.interface';
 
 interface IProps {
     books: IBook[] | null[] | undefined,
-    title: string
+    title: string,
+    currentUser: IUser
 }
 
-const TopFiveBook = observer(({ books, title }: IProps) => {
+const TopFiveBook = observer(({ books, title, currentUser }: IProps) => {
 
     const nav = useNavigate()
     
     if(!books) return <span>Здесь пока ничего нет :(</span>
     return (
     <div className="home__item">
+        <NavLink to={`/users/${currentUser.id}/books`}>
+            <div className="all">
+                Все
+            </div>
+        </NavLink>
         <div className="title">
             {title}
         </div>

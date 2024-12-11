@@ -20,11 +20,13 @@ const Me = observer(() => {
     const nav = useNavigate()
 
     useEffect(() => {
-        Promise.all([
-            books.fetchMybooks(tgID),
-            users.fetchTopFiveUsers(),
-        ])
-        
+        users.resetTopFiveUsers()
+        .then(() => {
+            Promise.all([
+                books.fetchMybooks(tgID),
+                users.fetchTopFiveUsers(),
+            ])
+        })
     }, [])
 
     useEffect(() => {
@@ -51,8 +53,8 @@ const Me = observer(() => {
                 </div>
             ) : (
                 <>
-                    {data !== null && <MeInfo me={data} thisMe />}
-                    <TopFiveBook title="Топ 5 книг" books={books.myBooks} />
+                    {data && <MeInfo me={data} thisMe />}
+                    {data && <TopFiveBook currentUser={data} title="Топ 5 книг" books={books.myBooks} />}
                     {data && <TopFiveUser title="В топ 5 лицея" users={users.topFiveUsers} user={data} />}
                     {users.classmates.length > 0 && data && (
                         <TopFiveUser title="В топ 5 одноклассников" users={users.classmates} user={data} />
