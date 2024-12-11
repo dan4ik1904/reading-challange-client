@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx"
-import { getAllUsers, getClassmatesUsers, getOneUser, getTopUsers } from "../api/users"
+import { getAllUsers, getClassmatesUsers, getOneUser, getTopUsers } from "../services/users"
 import { IAuthData, ISession, IUser } from "../types/user.interface"
-import { auth, authMe, getSessions, logout } from "../api/auth"
+import { auth, authMe, getSessions, logout } from "../services/auth"
 import { IBook } from "../types/book.interface"
 
 

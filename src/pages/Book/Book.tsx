@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { BiSolidSpreadsheet } from "react-icons/bi";
 import books from "../../stores/books"
-import './Book.css'
 import { MdDelete } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import useTelegram from "../../hooks/useTelegram";
 import { observer } from "mobx-react-lite";
 import useAuth from "../../hooks/useAuth";
+import itemStyles from '../../css/Item.module.css'
+import styles from './Book.module.css'
 
 
 const Book = observer(() => {
@@ -33,26 +34,26 @@ const Book = observer(() => {
     }
 
     return (
-        <div className="items">
+        <div className={itemStyles.items}>
             {isActiveButtonDelete === false ? (
                 <>
-                    <div className="info__book">
+                    <div className={styles.info__book}>
                         {books.book?.userId == data?.id && books.isLoading === false && (
-                            <div className="delete">
+                            <div className={styles.delete} >
                                 <MdDelete fontSize={'25px'} color={'red'} onClick={() =>  setIsActiveButtonDelete(true)} />
                             </div>
                         )}
                         
-                        <div className="title">
+                        <div className={styles.title}>
                             <h2>{books.book?.name}</h2>
                             <h5>{books.book?.author}</h5>
                         </div>
-                        <div className="info">
+                        <div className={styles.info}>
                             <span>{books.book?.pageCount}<BiSolidSpreadsheet /></span>
                             <span>{books.book?.ratting}<FaStar fontSize={'18px'} color="yellow"/></span>
                         </div>
                     </div>
-                    <div className="review">
+                    <div className={styles.review}>
                         <h6>Ревью:</h6>
                         <p>{books.book?.review}</p>
                     </div>

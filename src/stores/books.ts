@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx"
 import { IBook, ICreateBook } from "../types/book.interface";
-import { getMyBooks } from "../api/auth";
-import { createBook, deleteBook, getAllBooks, getBooksUser, getOneBook } from "../api/books";
+import { getMyBooks } from "../services/auth";
+import { createBook, deleteBook, getAllBooks, getBooksUser, getOneBook } from "../services/books";
 
 
 class BooksStore {

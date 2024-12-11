@@ -1,10 +1,10 @@
 import { FormEvent, useState } from "react";
-import CustomSelectArray from "../../components/Select/SelectArray";
+import CustomSelectArray from "../../components/UI/Select/SelectArray";
 import books from "../../stores/books";
 import useTelegram from "../../hooks/useTelegram";
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../components/UI/Loading/Loading";
 import { useNavigate } from "react-router-dom";
-import NoAuth from "../../components/Auth/NoAuth";
+import NoAuth from "../../components/UI/Auth/NoAuth";
 import useAuth from "../../hooks/useAuth";
 
 

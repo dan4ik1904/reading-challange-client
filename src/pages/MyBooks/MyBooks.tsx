@@ -1,13 +1,13 @@
 import { useEffect } from "react"
-import NoAuth from "../../components/Auth/NoAuth"
-import Loading from "../../components/Loading/Loading"
+import NoAuth from "../../components/UI/Auth/NoAuth"
+import Loading from "../../components/UI/Loading/Loading"
 import useAuth from "../../hooks/useAuth"
 import books from "../../stores/books"
 import useTelegram from "../../hooks/useTelegram"
-import AddBook from "../../components/Books/AddBookButton"
+import AddBook from "../../components/UI/Books/AddBookButton"
 import { observer } from "mobx-react-lite"
-import BookCard from "../../components/Books/BookCard"
-import './MeBooks.css'
+import BookCard from "../../components/UI/Books/BookCard"
+import itemStyles from '../../css/Item.module.css'
 
 
 const MyBooks = observer(() => {
@@ -28,7 +28,7 @@ const MyBooks = observer(() => {
     
     if(isAuthenticated === false) return <NoAuth />
     return (
-        <div className="items">
+        <div className={itemStyles.items}>
             <AddBook />
             {books.myBooks.length > 0 ? (
                 books.myBooks.map((book) => (

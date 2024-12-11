@@ -1,15 +1,16 @@
 import { observer } from "mobx-react-lite"
 import { useEffect } from 'react'
-import NoAuth from "../../components/Auth/NoAuth"
-import Loading from "../../components/Loading/Loading"
-import MeInfo from "../../components/Me/MeInfo"
+import NoAuth from "../../components/UI/Auth/NoAuth"
+import Loading from "../../components/UI/Loading/Loading"
+import MeInfo from "../../components/UI/Me/MeInfo"
 import useAuth from "../../hooks/useAuth"
 import books from "../../stores/books"
 import useTelegram from "../../hooks/useTelegram"
-import TopFiveBook from "../../components/UserProfile/TopFiveBook"
-import TopFiveUser from "../../components/UserProfile/TopFiveUser"
 import users from "../../stores/users"
 import { useNavigate } from "react-router-dom"
+import TopFiveBook from "../../components/UI/TopItems/TopFiveBook"
+import TopFiveUser from "../../components/UI/TopItems/TopFiveUser"
+import pageStyles from '../../css/page.module.css'
 
 
 const Me = observer(() => {
@@ -44,9 +45,9 @@ const Me = observer(() => {
 
     if(isAuthenticated === false) return <NoAuth />
     return (
-        <div className="items">
+        <div className={pageStyles.page__items}>
             {users.isAvtiveLogoutButton ? (
-                <div className="title">
+                <div>
                     <h6>Вы точно хотите выйти?</h6>
                     <button onClick={() => logout()}>Выйти</button>
                     <button onClick={() => users.isAvtiveLogoutButton = false}>Отмена</button>

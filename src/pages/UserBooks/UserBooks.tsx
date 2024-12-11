@@ -1,9 +1,10 @@
 import { useEffect } from "react"
-import Loading from "../../components/Loading/Loading"
+import Loading from "../../components/UI/Loading/Loading"
 import books from "../../stores/books"
 import { observer } from "mobx-react-lite"
-import BookCard from "../../components/Books/BookCard"
+import BookCard from "../../components/UI/Books/BookCard"
 import { useParams } from "react-router-dom"
+import itemStyles from '../../css/Item.module.css'
 
 
 const UserBooks = observer(() => {
@@ -22,7 +23,7 @@ const UserBooks = observer(() => {
 
     if(books.isLoading === true) return <Loading />
     return (
-        <div className="items">
+        <div className={itemStyles.items}>
             {books.userBooks.length > 0 ? (
                 books.userBooks.map((book) => (
                     book && (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useTelegram from './useTelegram';
-import api from '../api/axios';
+import api from '../services/axios';
 import { IUser } from '../types/user.interface';
 
 const useAuth = () => {

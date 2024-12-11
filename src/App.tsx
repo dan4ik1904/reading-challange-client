@@ -1,7 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import "./App.css";
 import Home from "./pages/Home/Home";
-import Layout from "./components/Layout";
 import Top from "./pages/Top/Top";
 import MyBooks from "./pages/MyBooks/MyBooks";
 import Classmates from "./pages/Classmates/Classmates";
@@ -11,6 +9,7 @@ import AddBook from "./pages/AddBook/AddBook";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import Book from "./pages/Book/Book";
 import UserBooks from "./pages/UserBooks/UserBooks";
+import Layout from "./components/Layout/Layout";
 // import { useEffect } from "react";
 // import useTelegram from "./hooks/useTelegram";
 

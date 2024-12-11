@@ -1,9 +1,10 @@
 import { observer } from "mobx-react-lite";
 import { FC, useEffect, useState } from "react";
 import users from "../../stores/users";
-import './Top.css';
-import Loading from "../../components/Loading/Loading";
-import UserTopCard from "../../components/Top/UserTopCard";
+import Loading from "../../components/UI/Loading/Loading";
+import UserTopCard from "../../components/UI/UserTopCard/UserTopCard";
+import itemStyles from '../../css/Item.module.css'
+
 
 const Top: FC = observer(() => {
   const [page, setPage] = useState(1);
@@ -53,14 +54,14 @@ const Top: FC = observer(() => {
   if (users.isLoading && page === 1) return <Loading />;
 
   return (
-    <main>
-      <div className="users items">
+    <>
+      <div className={itemStyles.items}>
         {users.topUsers.map((user) => (
           <UserTopCard key={user.id} user={user} />
         ))}
       </div>
       {isLoadingMore && <Loading isSmall />}
-    </main>
+    </>
   );
 });
 

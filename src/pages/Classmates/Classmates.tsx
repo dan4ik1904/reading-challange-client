@@ -1,11 +1,12 @@
 import { observer } from "mobx-react-lite"
 import users from "../../stores/users"
-import Loading from "../../components/Loading/Loading"
-import UserTopCard from "../../components/Top/UserTopCard"
+import Loading from "../../components/UI/Loading/Loading"
+import UserTopCard from "../../components/UI/UserTopCard/UserTopCard"
 import { useEffect } from "react"
 import useTelegram from "../../hooks/useTelegram"
-import NoAuth from "../../components/Auth/NoAuth"
+import NoAuth from "../../components/UI/Auth/NoAuth"
 import useAuth from "../../hooks/useAuth"
+import itemStyles from '../../css/Item.module.css'
 
 
 const Classmates = observer(() => {
@@ -21,7 +22,7 @@ const Classmates = observer(() => {
 
     if(isAuthenticated === false && loading === false) return <NoAuth />
     return (
-        <div className="items users">
+        <div className={itemStyles.items}>
             {users.classmates && (
                 <>
                     {users.classmates.map(user => (

@@ -1,11 +1,11 @@
 import React, { useState, FormEvent } from 'react';
-import CustomSelect from '../../components/Select/Select';
-import CustomSelectArray from '../../components/Select/SelectArray';
+import CustomSelect from '../../components/UI/Select/Select';
+import CustomSelectArray from '../../components/UI/Select/SelectArray';
 import users from '../../stores/users';
 import useTelegram from '../../hooks/useTelegram';
 import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import Loading from '../../components/Loading/Loading';
+import Loading from '../../components/UI/Loading/Loading';
 
 
 const Auth: React.FC = observer(() => {

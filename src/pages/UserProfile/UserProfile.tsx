@@ -1,12 +1,13 @@
 import { observer } from "mobx-react-lite"
-import Loading from "../../components/Loading/Loading"
-import MeInfo from "../../components/Me/MeInfo"
+import Loading from "../../components/UI/Loading/Loading"
+import MeInfo from "../../components/UI/Me/MeInfo"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import users from "../../stores/users"
 import books from "../../stores/books"
-import TopFiveBook from "../../components/UserProfile/TopFiveBook"
-import TopFiveUser from "../../components/UserProfile/TopFiveUser"
+import TopFiveBook from "../../components/UI/TopItems/TopFiveBook"
+import TopFiveUser from "../../components/UI/TopItems/TopFiveUser"
+import itemStyles from '../../css/Item.module.css'
 
 
 const UserProfile = observer(() => {
@@ -36,7 +37,7 @@ const UserProfile = observer(() => {
     if(users.isLoading === true) return <Loading />
     if(!users.oneUser) return <></>
     return (
-        <div className="items">
+        <div className={itemStyles.items}>
             <MeInfo me={users.oneUser}/>
             {users.oneUser && <TopFiveBook currentUser={users.oneUser} title="Топ 5 книг" books={books.userBooks} />}
             <TopFiveUser title="В топ 5 лицея" user={users.oneUser} users={users.topFiveUsers} />

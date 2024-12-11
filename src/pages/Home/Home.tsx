@@ -2,47 +2,36 @@ import { observer } from "mobx-react-lite";
 import { FC, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import useTelegram from "../../hooks/useTelegram";
-import Loading from "../../components/Loading/Loading";
+import InfoLitsey from "../../components/UI/InfoListsey/InfoListsey";
 import users from "../../stores/users";
-import InfoLitsey from "../../components/Home/InfoListsey";
-import TopFive from "../../components/Home/TopFive";
+import Loading from "../../components/UI/Loading/Loading";
+import TopFiveUser from "../../components/UI/TopItems/TopFiveUser";
+import pageStyles from '../../css/page.module.css'
 
 
 const Home: FC = observer(() => {
-
-  const { tgID } = useTelegram()
-  const { isAuthenticated } = useAuth()
-
-  useEffect(() => {
-      const fetch = () => {
-        users.resetTopFiveUsers()
-        .then(() => {
-           users.fetchTopFiveUsers()  
-        }) 
-      }
-      fetch()
-  }, [])
+  const { tgID } = useTelegram();
+  const { isAuthenticated, loading, data } = useAuth();
 
   useEffect(() => {
-    if(tgID) users.fetchClassmaets(tgID)
-  }, [tgID])
+    const fetchData = async () => {
+      await users.resetTopFiveUsers();
+      await users.fetchTopFiveUsers();
+      if (tgID) await users.fetchClassmaets(tgID);
+    };
 
-  if(users.isLoading) return <Loading />
+    fetchData();
+  }, [tgID]);
+
+  if(users.isLoading || loading) return <Loading />
   return (
-      <div className="home__items">
-          <InfoLitsey />
-          {users.users && (
-              <TopFive title="Топ лицея" users={users.topFiveUsers}/>    
-          )
-         }
-          {users.classmates && isAuthenticated ? (
-              <TopFive title={"Топ класса"} users={users.classmates}/>    
-          ) : (
-              <></>
-          )}
-      </div>
-  )
-})
+    <div className={pageStyles.page__items}>
+      <InfoLitsey />
+      {users.topFiveUsers && data && <TopFiveUser user={data} title="Топ лицея" users={users.topFiveUsers} />}
+      {isAuthenticated && data && users.classmates && <TopFiveUser user={data} title={"Топ класса"} users={users.classmates} />}
+    </div>
+  );
+});
 
 export default Home;
 
